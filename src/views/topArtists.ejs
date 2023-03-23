@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify.FM</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Welcome to my app!</h1>
+    <p>Seu estilo musical é : mainstream / indie / obscuro</p>
+    <div class="image-grid">
+    <%
+    for (var i = 0; i < topArtists.length; i++) { %>
+            <img src="<%= topArtists[i].images[0].url %>" />
+    <% } %>
+    </div>
+
+</body>
+</html>
