@@ -3,13 +3,30 @@
 <head>
     <title>Spotify.FM</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
 <body>
-    <h1>Welcome to my app!</h1>
-    <p>Today's date is <%= currentDate %></p>
+<div id="container">
+    <h1 class="title">Spotify.FM</h1>
+    <% if(loggedIn){ %>
+    <h2>Welcome, <%= userName %>!</h2>
+    <% } %>
 
-    <a href="/login">Log in with Spotify</a><br>
-    <a href="/logout">Logout</a><br>
-    <a href="/top_artists">Top Artists</a><br>
+    <p>View your Spotify stats and find out your music taste!</p>
+
+    <% if(loggedIn){ %>
+    <ul class="menu">
+        <li><a href="/top_artists">View my top artists</a></li>
+        <li><a href="/top_genres">View my top genres</a></li>
+        <li><a href="/top_songs">View my top songs</a></li>
+    </ul>
+    <% } %>
+
+    <% if(loggedIn){ %>
+        <a href="/logout" class="btn logout">Logout</a>
+    <% } else{ %>
+        <a href="/login" class="btn">Log in with Spotify</a><br>
+    <% } %>
+</div>
 </body>
 </html>

@@ -1,3 +1,31 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    background-color: #fff0d2;
+    color: #1a1a1a;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
+a {
+    color: #328f8a;
+}
+
+a:hover {
+    color: #1a4947;
+}
+
+#container {
+    width: 800px;
+    margin-top: 20px;
+    background-color: #fff7f1;
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -11,4 +39,58 @@
     width: 100%;
     height: 150px;
     object-fit: cover;
+}
+
+/* relevant styles */
+.img-wrap {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.artist-name {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(230, 239, 246, 0.72);
+    color: #000000;
+    visibility: hidden;
+    opacity: 0;
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+    padding-top: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    text-align: right;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.img-wrap:hover .artist-name {
+    visibility: visible;
+    opacity: 1;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #e16161;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
+
+.btn:hover {
+    background-color: #e07777;
+    color: black;
+}
+
+.title {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #6c6c6c;
+}
+
+.menu {
+    margin-bottom: 20px;
 }

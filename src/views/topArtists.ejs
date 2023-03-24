@@ -3,16 +3,23 @@
 <head>
     <title>Spotify.FM</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
 <body>
-<h1>Welcome to my app!</h1>
+<div id="container">
+    <h1 class="title">Spotify.FM</h1>
     <p>Seu estilo musical é : mainstream / indie / obscuro</p>
     <div class="image-grid">
     <%
     for (var i = 0; i < topArtists.length; i++) { %>
-            <img src="<%= topArtists[i].images[0].url %>" />
-    <% } %>
+            <div class="img-wrap">
+                <a href="<%= topArtists[i].uri %>">
+                    <img src="<%= topArtists[i].images[0].url %>" />
+                    <p class="artist-name"><%= topArtists[i].name %></p>
+                </a>
+            </div>
+        <% } %>
     </div>
-
+</div>
 </body>
 </html>

@@ -5,15 +5,21 @@ import cookie_parser from "cookie-parser";
 
 const app = express();
 const port = 8888;
+const server = process.env.WEB_URL;
 
-const CLIENT_ID = '';
-const CLIENT_SECRET = '';
-const REDIRECT_URI = 'http://localhost:8888/callback';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = server + '/callback';
 const SPOTIFY_SCOPES = 'user-read-private user-top-read user-read-recently-played user-library-read';
 
 const stateKey = 'spotify_auth_state';
 const accessToken = 'access_token';
 const refreshToken = 'refresh_token';
+
+app.use(cookie_parser());
+app.set('view engine', 'ejs');
+app.set('views',__dirname + '/views');
+app.use(express.static(__dirname + '/public'));
 
 function generateRandomString(length) {
     let text = '';
@@ -25,13 +31,22 @@ function generateRandomString(length) {
     return text;
 }
 
-app.use(cookie_parser());
-app.set('view engine', 'ejs');
-app.set('views',__dirname + '/views');
-app.use(express.static(__dirname + '/public'));
-
-app.get('/', (req, res) => {
-    res.render('index', { currentDate: new Date(), loggedIn: false});
+app.get('/', async function (req, res) {
+    let token = req.cookies[accessToken];
+    let tokenValid = false;
+    let currentUser = "";
+    if (token != null) {
+        tokenValid = true;
+        try {
+            currentUser = await getUserProfile(token);
+        } catch {
+            token = await refreshAccessToken(req.cookies[refreshToken]);
+            res.clearCookie(accessToken);
+            res.cookie(accessToken, token);
+            currentUser = await getUserProfile(token);
+        }
+    }
+    res.render('index', {loggedIn: tokenValid, userName: currentUser});
 });
 
 app.get('/login', function(req, res) {
@@ -46,6 +61,12 @@ app.get('/login', function(req, res) {
             redirect_uri: REDIRECT_URI,
             state: state
         }));
+});
+
+app.get('/logout', function(req, res) {
+    res.clearCookie(accessToken);
+    res.clearCookie(refreshToken);
+    res.redirect('/');
 });
 
 app.get('/callback', function(req, res) {
@@ -116,6 +137,19 @@ app.get('/top_artists', async function (req, res) {
     res.render('topArtists', {topArtists: result});
 });
 
+async function getUserProfile(accessToken): Promise<string> {
+    const response = await fetch('https://api.spotify.com/v1/me/', {
+        method: "GET",
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+    });
+    const result = await response.json();
+    if (response.ok) {
+        return result.display_name;
+    } else {
+        throw new Error(`Failed to fetch user profile: ${result.status.toString()}`);
+    }
+}
+
 async function getUserTopArtists(accessToken): Promise<Object> {
     const response = await fetch('https://api.spotify.com/v1/me/top/artists?limit=50', {
         method: "GET",
@@ -149,6 +183,7 @@ async function refreshAccessToken(refreshToken): Promise<string>  {
     }
 }
 
-app.listen(port, () => {
-    console.log(`Spotify.FM is listening on port ${port}`);
+app.listen(() => {
+    // console.log(`Spotify.FM is listening on port ${port}`);
+    console.log(`Spotify.FM is listening on ${server}`);
 });
