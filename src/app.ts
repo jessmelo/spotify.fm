@@ -4,7 +4,7 @@ import request from "request";
 import cookie_parser from "cookie-parser";
 
 const app = express();
-const port = 8888;
+const port = process.env.PORT || 8888;
 const server = process.env.WEB_URL;
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -183,7 +183,6 @@ async function refreshAccessToken(refreshToken): Promise<string>  {
     }
 }
 
-app.listen(() => {
-    // console.log(`Spotify.FM is listening on port ${port}`);
-    console.log(`Spotify.FM is listening on ${server}`);
+app.listen(port, () => {
+    console.log(`Spotify.FM is listening on port ${port}`);
 });
