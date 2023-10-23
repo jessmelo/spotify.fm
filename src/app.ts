@@ -1,15 +1,17 @@
+require('dotenv').config();
+
 import express from "express";
 import querystring from "querystring";
 import request from "request";
 import cookie_parser from "cookie-parser";
 
 const app = express();
-const port = process.env.PORT || 8888;
-const server = process.env.WEB_URL;
-
+const PORT = process.env.PORT;
+const SERVER_HOST = process.env.SERVER_URL;
+const APP_URL = `${SERVER_HOST}:${PORT}`;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = server + '/callback';
+const REDIRECT_URI = APP_URL + '/callback';
 const SPOTIFY_SCOPES = 'user-read-private user-top-read user-read-recently-played user-library-read';
 
 const stateKey = 'spotify_auth_state';
@@ -21,7 +23,7 @@ app.set('view engine', 'ejs');
 app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
-function generateRandomString(length) {
+function generateRandomString(length: number): string  {
     let text = '';
     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -52,6 +54,7 @@ app.get('/', async function (req, res) {
 app.get('/login', function(req, res) {
     let state = generateRandomString(16);
     console.log(state);
+    console.log(REDIRECT_URI);
     res.cookie(stateKey, state);
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
@@ -183,6 +186,6 @@ async function refreshAccessToken(refreshToken): Promise<string>  {
     }
 }
 
-app.listen(port, () => {
-    console.log(`Spotify.FM is listening on port ${port}`);
+app.listen(PORT,() => {
+    console.log(`Spotify.FM is listening at ${APP_URL}`);
 });
