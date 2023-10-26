@@ -4,10 +4,11 @@
     <title>Spotify.FM</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-amber-950">
 <div id="container">
-    <h1 class="title">Spotify.FM</h1>
+    <h1 class="title text-3xl">Spotify.FM</h1>
     <% if(loggedIn){ %>
     <h2>Welcome, <%= userName %>!</h2>
     <% } %>
@@ -16,9 +17,9 @@
 
     <% if(loggedIn){ %>
     <ul class="menu">
-        <li><a href="/top_artists">View my top artists</a></li>
+        <li><a href="/topArtists">View my top artists</a></li>
         <li><a href="/top_genres">View my top genres</a></li>
-        <li><a href="/top_songs">View my top songs</a></li>
+        <li><a href="/topTracks">View my top songs</a></li>
     </ul>
     <% } %>
 

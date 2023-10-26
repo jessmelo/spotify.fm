@@ -9,14 +9,14 @@
 <body>
 <div id="container">
     <h1 class="title text-3xl">Spotify.FM</h1>
-    <p>Seu estilo musical é : mainstream / indie / obscuro</p>
+    <p>Suas faixas principais das últimas semanas:</p>
     <div class="image-grid">
-    <%
-    for (var i = 0; i < topArtists.length; i++) { %>
+        <%
+        for (var i = 0; i < topTracks.length; i++) { %>
             <div class="img-wrap">
-                <a href="<%= topArtists[i].uri %>">
-                    <img src="<%= topArtists[i].images[0].url %>" />
-                    <p class="artist-name"><%= topArtists[i].name %></p>
+                <a href="<%= topTracks[i].album.uri %>">
+                    <img src="<%= topTracks[i].album.images[0].url %>" />
+                    <p class="track-name"><%= topTracks[i].name %></p>
                 </a>
             </div>
         <% } %>
