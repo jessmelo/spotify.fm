@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -22,7 +22,6 @@ a:hover {
 }
 
 #container {
-    width: 800px;
     margin-top: 20px;
     background-color: #fff7f1;
     padding: 40px;
