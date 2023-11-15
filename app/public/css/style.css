@@ -1,12 +1,11 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 body {
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 1.15rem;
     background-color: #fff0d2;
     color: #1a1a1a;
+    background-image: url("../img/bg.jpg");
+    background-size: 30rem;
+    background-repeat: repeat;
+    background-blend-mode: exclusion;
 }
 
 h1,h2,h3,h4,h5,h6 {
