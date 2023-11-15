@@ -1,6 +1,5 @@
 import React from 'react';
-import { Ysabeau } from 'next/font/google'
-import Header from './components/header';
+import { Ysabeau } from 'next/font/google';
 import './styles/globals.css';
 import './public/css/style.css';
 
@@ -13,6 +12,11 @@ const ysabeau = Ysabeau({
   subsets: ['latin'],
   display: 'swap',
 })
+
+//@ts-ignore
+global.performance = global.performance || {
+  now: () => new Date().getTime(),
+};
 
 export default function RootLayout({
   children,

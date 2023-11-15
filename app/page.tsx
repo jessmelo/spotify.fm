@@ -10,6 +10,7 @@ function RootPage() {
     router.push('/login');  
   };
 
+
   React.useEffect(() => {
     fetch('/login/checkLoginStatus')
       .then(response => response.json())
