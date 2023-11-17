@@ -4,8 +4,8 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next start",
-    "start": "next start",
+    "build": "next build",
+    "start": "next build && next start",
     "lint": "next lint"
   },
   "devDependencies": {
