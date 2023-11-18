@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   const state = params.get("state");
 
   const cookieStore = cookies();
-  const stateKeyCookie = cookieStore.get("stateKey").value;
+  const stateKeyCookie = cookieStore.get("stateKey")?.value;
 
   const SERVER_URL = process.env.SERVER_URL;
 
