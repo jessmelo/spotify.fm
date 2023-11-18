@@ -6,9 +6,12 @@ export async function GET(req: Request) {
   const params = new URLSearchParams(req.url.split("?")[1]);
   const code = params.get("code");
   const state = params.get("state");
-  const SERVER_URL = process.env.SERVER_URL + ":" + process.env.PORT;
+
   const cookieStore = cookies();
   const stateKeyCookie = cookieStore.get("stateKey").value;
+
+  const SERVER_URL =
+    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
 
   if (state === null || state !== stateKeyCookie) {
     return Response.redirect(

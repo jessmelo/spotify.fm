@@ -35,12 +35,15 @@ export function generateRandomString(length: number): string {
 }
 
 export async function fetchTokens(authCode) {
+  const SERVER_URL =
+    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
+
   const authOptions = {
     method: "post",
     url: "https://accounts.spotify.com/api/token",
     params: {
       code: authCode,
-      redirect_uri: `${process.env.SERVER_URL}:${process.env.PORT}/login/callback`,
+      redirect_uri: `${SERVER_URL}/login/callback`,
       grant_type: "authorization_code",
     },
     headers: {
