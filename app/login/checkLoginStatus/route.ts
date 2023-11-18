@@ -1,19 +1,19 @@
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 
-export async function GET(req: Request) {
-    try {
-        const cookieStore = cookies();
-        const token = cookieStore.get('access_token');
+export async function GET() {
+  console.log("Checking login status...");
+  try {
+    console.log("Checking login status...");
+    const cookieStore = cookies();
+    const token = cookieStore.get("accessToken")?.value;
 
-        if (token.value) {
-            return Response
-            .json({ isLoggedIn: true });
-        } else {
-            return Response
-            .json({ isLoggedIn: false });
-        }
-    } catch (error) {
-        return Response
-            .json({ isLoggedIn: false });
+    if (token) {
+      return Response.json({ isLoggedIn: true });
+    } else {
+      return Response.json({ isLoggedIn: false });
     }
-};
+  } catch (error) {
+    console.error("Error checking login status.", error);
+    return Response.json({ isLoggedIn: false });
+  }
+}

@@ -56,7 +56,6 @@ async function TopArtists() {
 
 async function TopArtistsPage() {
   let defaultTimeRange = 'medium_term';
-  console.log(defaultTimeRange);
   
   return (    
     <div className="text-center">
