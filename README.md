@@ -3,7 +3,7 @@
 frameworks used:
 
 - node
-- next.js (app router)
+- next.js (app router architecture)
 - react
-- spotify api
+- spotify web api (https://developer.spotify.com/documentation/web-api) 
 - tailwind.css
