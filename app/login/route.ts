@@ -1,16 +1,16 @@
 import { cookies } from "next/headers";
 import querystring from "querystring";
 import { generateRandomString } from "../api/utils/auth";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const SERVER_URL = process.env.SERVER_URL;
-
   try {
     const SPOTIFY_SCOPES =
       "user-read-private user-top-read user-read-recently-played user-library-read";
     let state = generateRandomString(16);
-    const cookieStore = cookies();
-    cookieStore.set("stateKey", state);
+
+    cookies().set("stateKey", state);
 
     return Response.redirect(
       "https://accounts.spotify.com/authorize?" +
