@@ -35,8 +35,7 @@ export function generateRandomString(length: number): string {
 }
 
 export async function fetchTokens(authCode) {
-  const SERVER_URL =
-    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
+  const SERVER_URL = process.env.SERVER_URL;
 
   const authOptions = {
     method: "post",

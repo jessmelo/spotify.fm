@@ -3,8 +3,7 @@ import querystring from "querystring";
 import { generateRandomString } from "../api/utils/auth";
 
 export async function GET() {
-  const SERVER_URL =
-    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
+  const SERVER_URL = process.env.SERVER_URL;
 
   try {
     const SPOTIFY_SCOPES =

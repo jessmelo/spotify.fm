@@ -10,8 +10,7 @@ export async function GET(req: Request) {
   const cookieStore = cookies();
   const stateKeyCookie = cookieStore.get("stateKey").value;
 
-  const SERVER_URL =
-    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
+  const SERVER_URL = process.env.SERVER_URL;
 
   if (state === null || state !== stateKeyCookie) {
     return Response.redirect(

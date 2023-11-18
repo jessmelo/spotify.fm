@@ -1,10 +1,7 @@
 import { cookies } from "next/headers";
-import querystring from "querystring";
-import { generateRandomString } from "../api/utils/auth";
 
 export async function GET(req: Request) {
-  const SERVER_URL =
-    process.env.SERVER_URL || `${process.env.SERVER_HOST}:${process.env.PORT}`;
+  const SERVER_URL = process.env.SERVER_URL;
 
   try {
     const cookieStore = cookies();
