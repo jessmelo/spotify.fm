@@ -9,7 +9,7 @@ export default function HomeLayout({
   return (
     <div>
       <Header />
-      <div id="container" className="max-w-4xl mb-10 rounded-2xl">
+      <div id="container" className="max-w-4xl mb-10 mt-20 rounded-2xl">
         {children}
       </div>
     </div>

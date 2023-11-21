@@ -1,11 +1,11 @@
 body {
     font-size: 1.15rem;
-    background-color: #fff0d2;
+    background-color: #040100;
     color: #1a1a1a;
     background-image: url("../img/bg.jpg");
     background-size: 30rem;
     background-repeat: repeat;
-    background-blend-mode: exclusion;
+    background-blend-mode: luminosity;
     background-attachment: fixed;
 }
 
@@ -22,7 +22,6 @@ a:hover {
 }
 
 #container {
-    margin-top: 20px;
     background-color: #fff7f1;
     padding: 40px;
     margin-left: auto;

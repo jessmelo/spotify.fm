@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 
-export default function TopArtistsLayout({
+export default function TopTracksLayout({
   children,
 }: {
   children: React.ReactNode
