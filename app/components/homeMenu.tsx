@@ -4,15 +4,21 @@ const HomeMenu = () => {
     return (
         <div className="text-center w-full">
         <ul className="mt-2 ml-8 mr-8">
-            <li className="py-4 bg-slate-700 mb-2 uppercase">
-                <a href="/topArtists" className="text-orange-200">Top Artists</a>
-            </li>
+            <a href="/topArtists" className="text-orange-200">
             <li className="py-4 bg-slate-700 mb-2 uppercase hover:bg-slate-300">
-                <a href="/topTracks" className="text-orange-200">Top Songs</a>
+                Top Artists
             </li>
-            <li className="py-4 bg-slate-700 mb-2 uppercase">
-                <a href="" className="text-orange-200">Top Genres</a>
+            </a>
+            <a href="/topTracks" className="text-orange-200">
+            <li className="py-4 bg-slate-700 mb-2 uppercase hover:bg-slate-300">
+                Top Tracks
             </li>
+            </a>
+            <a href="/topGenres" className="text-orange-200">
+            <li className="py-4 bg-slate-700 mb-2 uppercase hover:bg-slate-300">
+                Top Genres
+            </li>
+            </a>
         </ul>
         </div>
     );

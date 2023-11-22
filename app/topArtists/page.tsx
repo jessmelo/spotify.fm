@@ -44,7 +44,9 @@ async function TopArtists() {
     <div className="grid grid-cols-5 grid-rows-3 gap-4">
       {topArtists.items.map((artist: any, index: number) => (
         <div className="text-sm text-left" key={index}>
-          <img src={artist.images[0].url} className="max-w-full h-auto" />
+          <a key={artist.id} href={`/artists/${artist.id}`}>
+            <img src={artist.images[0].url} className="max-w-full h-auto" />
+          </a>
           <h3>{artist.name}</h3>
           <p>{artist.genres.join(', ')}</p>
           <p>{artist.popularity}</p>

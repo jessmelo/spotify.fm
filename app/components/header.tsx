@@ -13,17 +13,17 @@ const Header = () => {
             </a>
           </li>
           <li>
-          <a href="/home" className="hover:text-gray-300 text-[#ffb9b9]">
+          <a href="/home" className="hover:text-gray-300 text-[#000]">
               About
             </a>
           </li>
           <li>
-          <a href="/home" className="hover:text-gray-300 text-[#ffb9b9]">
+          <a href="/home" className="hover:text-gray-300 text-[#000]">
               Contact
             </a>
           </li>
           <li>
-            <a href="/logout" className="hover:text-gray-300 text-[#ffb9b9]">
+            <a href="/logout" className="hover:text-gray-300 text-[#000]">
               Logout
             </a>
           </li>
