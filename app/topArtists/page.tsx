@@ -19,7 +19,7 @@ async function getTopArtists(timeRange: string) {
         if (refreshed) {
           const newAccessToken = cookieStorage.get('accessToken')?.value;
           const { data }  = await axios.get('https://api.spotify.com/v1/me/top/artists', {
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `Bearer ${newAccessToken}` },
             params: { time_range: timeRange },
         });
       return data;
@@ -40,9 +40,10 @@ async function TopArtists() {
   if (!topArtists) {
     return <div>Error fetching top artists.</div>;
   }
+
   return (
-    <div className="grid grid-cols-5 grid-rows-3 gap-4">
-      {topArtists.items.map((artist: any, index: number) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {topArtists.items.map((artist, index) => (
         <div className="text-sm text-left" key={index}>
           <a key={artist.id} href={`/artists/${artist.id}`}>
             <img src={artist.images[0].url} className="max-w-full h-auto" />

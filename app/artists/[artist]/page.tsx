@@ -29,15 +29,13 @@ async function getArtistData(artistID: string) {
       console.log("Got artist data.");
      return data;
     } catch (error) {
-        console.error("Error fetching artist data.");
-        console.log(error);
+        console.error("Error fetching artist data.", error);
         return null;
     }
   }
   
 async function Artist({ artistID }: { artistID: string }) {
     console.log("Getting artist data...");
-    console.log(artistID);
     const artistData = await getArtistData(artistID);
   
     if (!artistData) {
@@ -61,7 +59,6 @@ async function Artist({ artistID }: { artistID: string }) {
     
 async function ArtistPage({ params }: { params: { artist: string } }) {    
     let artistID = params.artist;
-    console.log("Artist ID: " + artistID);
     return (    
       <div className="text-center">  
           <Suspense fallback={<div>Loading...</div>}>

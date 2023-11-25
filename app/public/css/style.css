@@ -1,11 +1,11 @@
 body {
     font-size: 1.15rem;
-    background-color: #040100;
+    background-color: #793c3c;
     color: #1a1a1a;
     background-image: url("../img/bg.jpg");
     background-size: 30rem;
     background-repeat: repeat;
-    background-blend-mode: luminosity;
+    background-blend-mode: color-burn;
     background-attachment: fixed;
 }
 
