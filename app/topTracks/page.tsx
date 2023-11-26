@@ -42,7 +42,7 @@ async function TopArtists() {
     return <div>Error fetching top artists.</div>;
   }
   return (
-    <div className="grid grid-cols-5 grid-rows-3 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {topTracks.items.map((track: any, index: number) => (
         <div className="text-sm text-left" key={index}>
           <img src={track.album.images[0].url} className="max-w-full h-auto" />

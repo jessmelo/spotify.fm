@@ -8,6 +8,7 @@ async function getTopArtists(timeRange: string) {
   console.log("Getting top artists...");
   const cookieStorage = cookies();
   const accessToken = cookieStorage.get('accessToken')?.value;
+
   try {
     const { data }  = await axios.get('https://api.spotify.com/v1/me/top/artists', {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -42,7 +43,7 @@ async function TopArtists() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {topArtists.items.map((artist, index) => (
         <div className="text-sm text-left" key={index}>
           <a key={artist.id} href={`/artists/${artist.id}`}>
