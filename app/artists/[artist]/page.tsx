@@ -42,20 +42,24 @@ async function Artist({ artistID }: { artistID: string }) {
       return <div>Error fetching artist.</div>;
     }
     return (
-      <div className="">
+      <div className="flex">
+        <div className="w-1/2">
+          <img src={artistData.images[0].url} className="" />
+        </div>
+        <div className="w-1/2 px-4">
           <h1 className="text-4xl mb-4">{artistData.name}</h1>
-          <div className="flex justify-left">
-            <img src={artistData.images[0].url} className="w-1/2 mx-4" />
-            <h2 className="text-2xl mb-4">Genres</h2>
-            <ul className="list-disc">
-              {artistData.genres.map((genre: string) => (
-                <li>{genre}</li>
-              ))}
-            </ul>
-          </div>
+          <h2 className="text-2xl mb-4">Genres</h2>
+          <ul className="list-disc ml-8 text-left">
+            {artistData.genres.map((genre: string) => (
+              <li>{genre}</li>
+            ))}
+          </ul>
+          <h2 className="text-2xl mb-4">Popularity</h2>
+          <p>{artistData.popularity}</p>
+        </div>
       </div>
     );
-}
+  }
     
 async function ArtistPage({ params }: { params: { artist: string } }) {    
     let artistID = params.artist;

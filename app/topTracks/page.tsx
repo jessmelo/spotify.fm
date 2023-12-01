@@ -62,7 +62,7 @@ async function TopTracksPage() {
     <div className="text-center">
       <h1 className='text-3xl'>Welcome to Spotify.fm</h1>
       <p>View your spotify data.</p>
-      <h1 className="text-left">Top Artists</h1>
+      <h1 className="text-left">Top Tracks</h1>
 
       <div className="flex justify-end">
         <TimeRangeSelector timeSelection={defaultTimeRange} />
