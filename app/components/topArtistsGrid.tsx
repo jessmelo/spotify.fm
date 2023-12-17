@@ -1,13 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 
+interface Artist {
+    id: string;
+    images: { url: string }[];
+    name: string;
+}
+  
 interface TopArtistsGridProps {
-    artists: any;
+  artists: { items: Artist[] };
 }
 
 const TopArtistsGrid: React.FC<TopArtistsGridProps> = ({ artists }) => {
-    const [topArtists, setTopArtists] = useState<any>(artists);
-
     return (
         <>        
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
