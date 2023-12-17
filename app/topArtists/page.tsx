@@ -2,7 +2,11 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { refreshToken } from "../api/utils/auth";
+import React from "react";
+import TopArtistsData from "../components/topArtistsData";
 import TimeRangeSelector from "../components/timeRangeSelector";
+import TopArtistsGrid from "../components/topArtistsGrid";
+import { data } from "browserslist";
 
 async function getTopArtists(timeRange: string) {
   console.log("Getting top artists...");
@@ -35,9 +39,8 @@ async function getTopArtists(timeRange: string) {
   }
 }
 
-async function TopArtists() {
-  const topArtists = await getTopArtists("medium_term");
-
+async function TopArtists(timeRange: string) {
+  const topArtists = await getTopArtists(timeRange);
   if (!topArtists) {
     return <div>Error fetching top artists.</div>;
   }
@@ -47,11 +50,11 @@ async function TopArtists() {
       {topArtists.items.map((artist, index) => (
         <div className="text-sm text-left" key={index}>
           <a key={artist.id} href={`/artists/${artist.id}`}>
-            <img src={artist.images[0].url} className="max-w-full h-auto" />
+            <img src={artist.images[0].url} className="max-w-full h-auto opacity-100 hover:opacity-80" />
           </a>
-          <h3>{artist.name}</h3>
-          <p>{artist.genres.join(', ')}</p>
-          <p>{artist.popularity}</p>
+          <a key={artist.id} className="text-rose-900 hover:text-rose-800" href={`/artists/${artist.id}`}>
+            <h3 className="font-bold">{artist.name}</h3>
+          </a>
         </div>
       ))}
     </div>
@@ -59,19 +62,12 @@ async function TopArtists() {
 }
 
 async function TopArtistsPage() {
-  let defaultTimeRange = 'medium_term';
-  
   return (    
     <div className="text-center">
       <h1 className='text-3xl'>Welcome to Spotify.fm</h1>
       <p>View your spotify data.</p>
-      <h1 className="text-left">Top Artists</h1>
-
-      <div className="flex justify-end">
-        <TimeRangeSelector timeSelection={defaultTimeRange} />
-      </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <TopArtists />
+        <Suspense>
+          <TopArtistsData />
         </Suspense>
       </div>
   );

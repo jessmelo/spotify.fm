@@ -7,7 +7,11 @@ const Header = () => {
   return (
     <header className="py-2 px-4 sm:px-8 flex justify-between items-center w-full fixed top-0 bg-rose-300 z-10">
 
-      <h1 className="font-bold uppercase text-lg sm:text-xl">Spotify.fm</h1>
+      <h1 className="font-bold uppercase text-lg sm:text-xl">
+        <a href="/home" className="hover:text-gray-600 text-[#000]">
+          Spotify.fm
+        </a>
+        </h1>
 
       <button className="sm:hidden text-4xl" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         ≡

@@ -95,7 +95,6 @@ export async function refreshToken() {
       return true;
     } else {
       return false;
-      throw new Error("Failed to refresh token");
     }
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -105,6 +104,22 @@ export async function refreshToken() {
     );
     return false;
   }
+}
+
+export async function fetchAccessToken(): Promise<string> {
+  const cookieStorage = cookies();
+  const accessToken = cookieStorage.get("accessToken")?.value;
+
+  if (!accessToken) {
+    const refreshed = await refreshToken();
+    if (refreshed) {
+      return cookieStorage.get("accessToken")?.value;
+    } else {
+      throw new Error("Failed to refresh token");
+    }
+  }
+
+  return accessToken;
 }
 
 module.exports = {

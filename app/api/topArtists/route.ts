@@ -1,32 +1,26 @@
-import { cookies } from 'next/headers';
-import { refreshToken } from '../utils/auth';
-import axios from 'axios';
+import axios from "axios";
+import { cookies } from "next/headers";
 
 export async function GET(req: Request) {
+  try {
     console.log("Getting top artists...");
     const cookieStorage = cookies();
-    const accessToken = cookieStorage.get('accessToken')?.value;
-    try {
-        const { data }  = await axios.get('https://api.spotify.com/v1/me/top/artists', {
-            headers: { Authorization: `Bearer ${accessToken}` },
-        });
+    const accessToken = cookieStorage.get("accessToken")?.value;
+    const { searchParams } = new URL(req.url);
+    const timeRange = searchParams.get("time_range");
 
-        if (data.status === 401) {
-            const refreshed = await refreshToken();
-            if (refreshed) {
-                const newAccessToken = cookieStorage.get('accessToken')?.value;
-                const { data }  = await axios.get('https://api.spotify.com/v1/me/top/artists', {
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                });
-                return Response.json(data);
-            } else {
-                throw new Error('Failed to refresh token');
-            }
-        }
-        console.log("Got top artists.");
-       return Response.json(data);
-    } catch (error) {
-        console.error("Error fetching top artists.");
-        return Response.json({ error: error });
-    }
-};
+    console.log("Time range:", timeRange);
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists",
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+        params: { time_range: timeRange },
+      }
+    );
+    console.log("Got top artists.");
+    return Response.json(data);
+  } catch (error) {
+    console.error("Error fetching top artists.");
+    return Response.json({ error: error });
+  }
+}
