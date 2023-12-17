@@ -28,13 +28,13 @@ async function TopArtistsData() {
             const data = await getTopArtists("medium_term");
             if (data) {
                 setTopArtists(data);
-                setLoading(false);
             }
+            setLoading(false);
         };
         fetchData();
     }, []);
     
-    const handleTimeRangeChange = async (newTimeRange: string) => {
+    const handleTimeRangeChange = async (newTimeRange) => {
         setLoading(true);
         const data = await getTopArtists(newTimeRange);
         if (data) {
@@ -45,7 +45,11 @@ async function TopArtistsData() {
             setTopArtists(null);
         }
     };
-    
+
+    if (!topArtists && !loading) {
+        return <div>Error fetching top artists.</div>;
+    };
+
     return (
         <>
         <div className="flex justify-end">
