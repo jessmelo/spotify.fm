@@ -8,7 +8,7 @@ async function TopTracksPage() {
       <h1 className='text-3xl'>Welcome to Spotify.fm</h1>
       <p>View your spotify data.</p>
         <Suspense fallback={<div>Loading...</div>}>
-          <TopArtistsGrid />
+          {/* <TopArtistsGrid /> */}
         </Suspense>
       </div>
   );
