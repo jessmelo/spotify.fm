@@ -7,7 +7,7 @@ export default function NotFound() {
     <div id="container" className="max-w-4xl justify-center rounded-2xl text-center mt-10">
         <h2 className="font-bold">404 - Not Found</h2>
         <p>Could not find page! :(</p>
-        <Link href="/">Return to Home</Link>
+        <Link href="/home">Return to Home</Link>
       </div>
     </div>
   )
