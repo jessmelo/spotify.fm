@@ -1,5 +1,6 @@
 import axios from "axios";
 import { cookies } from "next/headers";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
   try {
@@ -22,6 +23,7 @@ export async function GET(req: Request) {
 
     for (let i = 0; i < data.items.length; i++) {
       const trackGenres: string[] = data.items[i].genres;
+
       topGenres.push(...trackGenres);
     }
     console.log("Top genres:", topGenres);
