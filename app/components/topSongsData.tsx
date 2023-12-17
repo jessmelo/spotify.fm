@@ -5,6 +5,8 @@ import { useState } from "react";
 import TimeRangeSelector from "./timeRangeSelector";
 import TopSongsGrid from "./topSongsGrid";
 
+export const dynamic = "force-dynamic";
+
 async function getTopSongs(timeRange: string) {
     console.log("Getting top songs...");
     try {

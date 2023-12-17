@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import TimeRangeSelector from "./timeRangeSelector";
+export const dynamic = "force-dynamic";
 
 async function getTopGenres(timeRange: string) {
     console.log("Getting top genres...");
