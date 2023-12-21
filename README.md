@@ -1,5 +1,7 @@
 # spotify.fm
 
+this is a web app for viewing your spotify data
+
 frameworks used:
 
 - node
@@ -7,3 +9,7 @@ frameworks used:
 - react
 - spotify web api (https://developer.spotify.com/documentation/web-api) 
 - tailwind.css
+
+run on your local machine with:
+
+- npm run dev
